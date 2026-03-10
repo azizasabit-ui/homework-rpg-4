@@ -49,6 +49,7 @@ public abstract class UnitLeaf implements CombatNode {
 
     @Override
     public void printTree(String indent) {
-        System.out.println(indent + "- " + name + " [HP=" + health + ", ATK=" + attackPower + "]");
+        System.out.println(indent + "- " + name + " [HP=" + health + ", ATK=" + attackPower + 
+                          (isAlive() ? ", ALIVE]" : ", DEAD]"));
     }
 }
