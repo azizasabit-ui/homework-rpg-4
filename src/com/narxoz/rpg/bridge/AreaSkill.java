@@ -9,8 +9,19 @@ public class AreaSkill extends Skill {
 
     @Override
     public void cast(CombatNode target) {
-        // TODO: Area Bridge action
-        // Apply resolved damage to a composite target.
-        // Tip: Let Composite classes decide how to distribute AOE damage.
+        int damage = resolvedDamage();
+        System.out.println("  Casting AREA " + getSkillName() + " (" + getEffectName() + 
+                          ") for " + damage + " damage on " + target.getName() + " and all members");
+        
+        if (target.getChildren().isEmpty()) {
+            target.takeDamage(damage);
+        } else {
+           
+            for (CombatNode child : target.getChildren()) {
+                if (child.isAlive()) {
+                    child.takeDamage(damage);
+                }
+            }
+        }
     }
 }
